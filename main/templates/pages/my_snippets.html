@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Дата создания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for snippet in snippets %}
+                <tr class="{% if forloop.counter0|divisibleby:2 %}table-secondary{% else %}table-light{% endif %}">
+                    <td>{{ snippet.id }}</td>
+                    <td><a href="{% url 'view_snippet' id=snippet.id %}">{{ snippet.name }}</a></td>
+                    <td>{{ snippet.creation_date|date:"d.m.Y" }}</td>
+                </tr>
+                {% empty %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
