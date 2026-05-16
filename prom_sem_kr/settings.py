@@ -34,7 +34,10 @@ SECRET_KEY = '+a04ue+k_i3y@_x)y7xv$y#m#g4x6rv(y_g9t$n$8phq$emk6h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['python-bin.onrender.com', 'localhost', '127.0.0.1']
+if host := os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
+    if host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(host)
 
 # Application definition
 
